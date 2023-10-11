@@ -1,0 +1,44 @@
+@import "bootstrap";
+@import "bootstrap-icons";
+
+.btn-groups a, button{
+  margin: 5px;
+}
+
+
+
+.box-content{
+  display: flex;
+  align-items: center;
+  max-width: 100vw;
+  min-height: 80vh;
+}
+.box-content .img-home{
+  max-width: 100vw;
+}
+
+.box-content p{
+  max-width: 90vw;
+  text-align: justify;
+}
+
+
+
+.modalLogin .modal-header{
+  text-align: center;
+  flex-direction: column-reverse;
+  border: none;
+  margin-bottom: 0px;
+}
+.modalLogin .modal-header h2, p{
+  margin: 0px;
+}
+.modalLogin form .buttons{
+  display: flex;
+  justify-content: center;
+}
+.modalLogin input{
+  max-width: 85%;
+  margin: auto;
+  margin-bottom: 10px;
+}
