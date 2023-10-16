@@ -24,20 +24,21 @@ const FormLogin = ({ stateUser, setStateUser })=>{
             alert("Preencha todos os campos!")
         }
 
+
     }    
     
 
     return(
         <div className="modalLogin">
 
-            <div className="modal fade" id="staticBackdropSingIn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div className="modal fade" id="staticBackdropSingIn" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-body">
                         
                             <div className="modal-header">
                                 <p> Apenas usuários registrados ao ERP. </p>
-                                <h2>  <i class="bi bi-person-fill"></i> Login </h2>
+                                <h2>  <i className="bi bi-person-fill"></i> Login </h2>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
