@@ -1,5 +1,9 @@
-const PageContentsHome = ()=>{
+
+import Footer from "../components/Footer";
+
+const Home = ()=>{
     return(
+
         <div className="container align-items-center">
             <div className="box-content">
                 <div className="row">
@@ -16,8 +20,7 @@ const PageContentsHome = ()=>{
                 </div>
             </div>
         </div>
-
     )
 }
 
-export default PageContentsHome;
+export default Home;

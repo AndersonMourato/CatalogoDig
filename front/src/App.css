@@ -46,3 +46,23 @@
 .userName{
   color: white;
 }
+
+
+.content-login{
+  width: 50%;
+  margin: 3% auto;
+}
+
+.content-login .header{
+  text-align: center;
+  margin: 3% auto;
+}
+
+
+.footer{
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

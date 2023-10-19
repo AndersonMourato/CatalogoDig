@@ -1,47 +1,40 @@
-import bootstrap from "bootstrap"
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useEffect } from "react";
-
+import bootstrap from "bootstrap";
 import './App.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import PageContentsHome from './components/PageContentsHome';
-import PageErro from "./components/PageErro";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import PageErro from "./routes/Erro";
+import Home from "./routes/Home";
+import Login, { action as actionLogin} from "./routes/Login";
+import Header from "./components/Header";
+import { useState } from "react";
+
+
+
 
 function App() {
 
-
-  let PageContents = ()=>{
-    return (
-      <h1> ERRO, USER NÃO LOGADO! </h1>
-    )
-  }
+  const [login, setLogin] = useState("")
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <PageContentsHome />,
+      element: <Header login={login}  />,
       errorElement: <PageErro />,
-    },
-    {
-      path: "/login",
-      element: <PageContents />,
-      errorElement: <PageErro />,
+      children: [
+        {index:true, element: <Home />},
+        {
+          path: "/login",
+          element: <Login setLogin={setLogin}/>,
+          action: actionLogin,
+        },
+      ],
     },
   ]);
 
-  useEffect(()=>{
-    <Header />
-})
+
 
 
   return (
-    <>
-      <Header />
-      <RouterProvider router={router} />
-      <Footer />
-    </>
+      <RouterProvider router={router}/>
   );
 }
 

@@ -1,55 +1,27 @@
-import { useEffect, useState } from "react";
-import FormLogin from "./FormLogin";
+import { Outlet, Link } from "react-router-dom";
+import Footer from "./Footer";
 
-const Header = ()=>{
-
-    const user = {
-        nome:"",
-        password:"",
-        access: false
-    }
-
-    const [stateUser, setStateUser] = useState(user);
-    
-    const Logeed = ()=>{
-        return(
-            <div className="btn-groups">
-                <h5 className="userName"> <i className="bi bi-person-fill"></i> {stateUser.nome} </h5>
-            </div>
-        )   
-    }
-    const LogeedOut = ()=>{
-        return(
-            <div className="btn-groups">
-                <button className="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropSingIn"> <i className="bi bi-person-fill"></i> Sing in </button>
-                <button className="btn btn-primary btn-sm" href="#"> Sing up </button>
-            </div>
-        )
-    }
-
-
+const Header = ({login})=>{
         
     return(
         <>
-
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
-
                     <a className="navbar-brand" href="#"> <i className="bi bi-collection"></i> CATALOGO </a>
-                    {
-                       stateUser.access === true ? <Logeed /> : <LogeedOut />                       
-                    }
+                    <div className="btn-groups">
+                        <Link to="/login" className="btn btn-primary btn-sm"> <i className="bi bi-person-fill"></i> Sing in </Link>
+                        <Link to="/" className="btn btn-primary btn-sm"> Sing up </Link>
+                    </div>
                 </div>
             </nav>
 
-            <FormLogin stateUser={stateUser} setStateUser={setStateUser} />
-
-            <h5> <i className="bi bi-person-fill"></i> {stateUser.nome} </h5>
-
+            <div className="container">
+                {login.name && <h1>{login.name}</h1>}
+                <Outlet />
+            </div>
+            <Footer />
         </>
     )
-
-
 }
 
 export default Header;
