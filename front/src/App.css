@@ -6,7 +6,6 @@
 }
 
 
-
 .box-content{
   display: flex;
   align-items: center;
@@ -21,7 +20,6 @@
   max-width: 90vw;
   text-align: justify;
 }
-
 
 
 .modalLogin .modal-header{
@@ -43,10 +41,9 @@
   margin-bottom: 10px;
 }
 
-.userName{
+.logeed{
   color: white;
 }
-
 
 .content-login{
   width: 50%;
@@ -57,6 +54,46 @@
   text-align: center;
   margin: 3% auto;
 }
+
+.main-container{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.main-menu{
+  background-color: red;
+  width: 200px;
+  min-height: 70vh;
+}
+.main-content{
+  background-color: rgb(150, 150, 150);
+  padding: 10px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: column;
+}
+.main-content .search-prod{
+  width: 100%;
+  max-height: 80px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.product-row{
+  width: 100%;
+  background-color: blueviolet;
+  display: flex;
+  flex-flow: column;
+}
+
+.prod-icon{ 
+  display: flex;
+  max-width: 80px;
+  max-height: 80px;
+}
+
 
 
 .footer{

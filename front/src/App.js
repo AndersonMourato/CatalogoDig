@@ -6,25 +6,32 @@ import Home from "./routes/Home";
 import Login, { action as actionLogin} from "./routes/Login";
 import Header from "./components/Header";
 import { useState } from "react";
+import Main from "./routes/Main";
 
 
 
 
 function App() {
 
-  const [login, setLogin] = useState("")
+  const [stateLogin, setStateLogin] = useState("")
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Header login={login}  />,
+      element: <Header login={stateLogin}  />,
       errorElement: <PageErro />,
       children: [
         {index:true, element: <Home />},
         {
           path: "/login",
-          element: <Login setLogin={setLogin}/>,
+          element: <Login setLogin={setStateLogin}/>,
+          errorElement: <PageErro />,
           action: actionLogin,
+        },
+        {
+          path: "/main",
+          element: <Main login={stateLogin}/>,
+          errorElement: <PageErro />,
         },
       ],
     },
