@@ -61,12 +61,25 @@
   justify-content: center;
 }
 .main-menu{
-  background-color: red;
-  width: 200px;
-  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(37, 37, 37);
+  padding: 10px;
+  color: white;
 }
+.main-menu select{
+  display: flex;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  border: none;
+  width: 100%;
+}
+.main-menu .btn-filter{
+  display: flex;
+}
+
+
 .main-content{
-  background-color: rgb(150, 150, 150);
   padding: 10px;
   width: 100%;
   height: auto;
@@ -83,15 +96,21 @@
 
 .product-row{
   width: 100%;
-  background-color: blueviolet;
   display: flex;
   flex-flow: column;
 }
+.product-row table th{
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+.product-row table td{
+  vertical-align: middle;
+}
 
 .prod-icon{ 
-  display: flex;
   max-width: 80px;
   max-height: 80px;
+  text-align: center;
 }
 
 

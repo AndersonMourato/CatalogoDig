@@ -1,4 +1,78 @@
+import { useEffect, useState } from "react";
+import Product from "../components/Product";
+import { products, getMarcas, getDepartamentos, getCategorias } from "../components/Products";
+import { Form } from "react-router-dom";
+
 const Main = ()=>{
+
+    const marcas = getMarcas();
+    const departamentos = getDepartamentos();
+    const categorias = getCategorias();
+
+    const [productsAll, setProductsAll] = useState(products);
+    const [list, setList] = useState([])
+    const [getFiltros, setFiltros] = useState({
+        marca: "",
+        departamento: "",
+        categoria: ""
+    });
+
+    function filter(ev){
+        const id = ev.target.id;
+        const value = ev.target.value;
+
+        if(id === "marca"){
+            setFiltros({
+                marca: value,
+                departamento: getFiltros.departamento,
+                categoria: getFiltros.categoria
+            })
+        }else if(id === "departamento"){
+            setFiltros({
+                marca: getFiltros.marca,
+                departamento: value,
+                categoria: getFiltros.categoria
+            })
+        }else if(id === "categoria"){
+            setFiltros({
+                marca: getFiltros.marca,
+                departamento: getFiltros.departamento,
+                categoria: value
+            })
+        }
+
+    }
+
+    function aplicFilter(){
+        const marca = (item)=>{
+            if(getFiltros.marca != ""){
+                return item.marca === getFiltros.marca
+            }else{
+                return true
+            }   
+        }
+        const categoria = (item)=>{
+            if(getFiltros.categoria != ""){
+                return item.categoria === getFiltros.categoria
+            }else{
+                return true
+            }   
+        }
+        const departamento = (item)=>{
+            if(getFiltros.departamento != ""){
+                return item.departamento === getFiltros.departamento
+            }else{
+                return true
+            }   
+        }
+        
+        if(getFiltros.marca != "" || getFiltros.categoria != "" || getFiltros.departamento != ""){
+            const newArray = products.filter((item)=> marca(item)).filter((item)=> departamento(item)).filter((item)=> categoria(item))
+            setProductsAll(newArray)
+        }
+    }
+
+
     return(
         <>
             <h1> Lista de Produtos </h1>
@@ -9,9 +83,9 @@ const Main = ()=>{
                     <div className="search-prod">
                         <div className="row">
                             <form method="get">
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search"></i></span>
-                                        <input type="text" class="form-control" placeholder="buscar produto" />
+                                    <div className="input-group">
+                                        <span className="input-group-text" id="addon-wrapping"><i className="bi bi-search"></i></span>
+                                        <input type="text" className="form-control" placeholder="buscar produto" />
                                     </div>
                             </form>
                         </div>
@@ -20,89 +94,91 @@ const Main = ()=>{
                                         
                     <div className="product-row">
                         <div className="row">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th className="col"> ADD </th>
-                                        <th className="col"> IMAGEM </th>
-                                        <th className="col"> CÓDIGO </th>
-                                        <th className="col"> DESCRICÃO </th>
-                                        <th className="col"> MARCA </th>
-                                        <th className="col"> PREÇO R$ </th>
-                                        <th className="col"> PROMOÇÃO </th>
-                                        <th className="col"> PRE. FINAL R$ </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="col">
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td className="col">
-                                            <img className="prod-icon" src="https://dmvfarma.vtexassets.com/arquivos/ids/224765/caixa-padrao-Sanofi.jpg?v=638227813638400000" /> 
-                                        </td>
-                                        <td className="col"> 1322 </td>
-                                        <td className="col"> Azitromicina 500mg 3 </td>
-                                        <td className="col"> Medlay </td>
-                                        <td className="col"> 12,89 </td>
-                                        <td className="col"> Acima de 4 </td>
-                                        <td className="col"> 10,89 </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td className="col">
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td className="col">
-                                            <img className="prod-icon" src="https://dmvfarma.vtexassets.com/arquivos/ids/224765/caixa-padrao-Sanofi.jpg?v=638227813638400000" /> 
-                                        </td>
-                                        <td className="col"> 1322 </td>
-                                        <td className="col"> Azitromicina 500mg 3 </td>
-                                        <td className="col"> Medlay </td>
-                                        <td className="col"> 12,89 </td>
-                                        <td className="col"> Acima de 4 </td>
-                                        <td className="col"> 10,89 </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td className="col">
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td className="col">
-                                            <img className="prod-icon" src="https://dmvfarma.vtexassets.com/arquivos/ids/224765/caixa-padrao-Sanofi.jpg?v=638227813638400000" /> 
-                                        </td>
-                                        <td className="col"> 1322 </td>
-                                        <td className="col"> Azitromicina 500mg 3 </td>
-                                        <td className="col"> Medlay </td>
-                                        <td className="col"> 12,89 </td>
-                                        <td className="col"> Acima de 4 </td>
-                                        <td className="col"> 10,89 </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td className="col">
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td className="col">
-                                            <img className="prod-icon" src="https://dmvfarma.vtexassets.com/arquivos/ids/224765/caixa-padrao-Sanofi.jpg?v=638227813638400000" /> 
-                                        </td>
-                                        <td className="col"> 1322 </td>
-                                        <td className="col"> Azitromicina 500mg 3 </td>
-                                        <td className="col"> Medlay </td>
-                                        <td className="col"> 12,89 </td>
-                                        <td className="col"> Acima de 4 </td>
-                                        <td className="col"> 10,89 </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
+                            <div className="table-responsive-sm">
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th className="col"> ADD </th>
+                                            <th className="col"> IMAGEM </th>
+                                            <th className="col"> CÓDIGO </th>
+                                            <th className="col"> DESCRICÃO </th>
+                                            <th className="col"> MARCA </th>
+                                            <th className="col"> PREÇO </th>
+                                            <th className="col"> PROMOÇÃO </th>
+                                            <th className="col"> PRE. FINAL </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            productsAll.map((itens, key)=>{
+                                                return(
+                                                    <Product 
+                                                        key={ key }
+                                                        img={ itens.img }
+                                                        cod={ itens.cod}
+                                                        descricao={ itens.descricao }
+                                                        marca={ itens.marca }
+                                                        preco={ itens.preco }
+                                                        promo={ itens.promo }
+                                                        prFinal={ itens.prFinal }
+                                                        list = { list }
+                                                        setList = { setList }
+                                                    />
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
                 </div>
 
                 <div className="main-menu">
-                    MENU LATERAL
+
+                    <div className="filters">
+                        <h6> Filtros </h6>
+
+                        <select id="marca" onChange={ filter }>
+                            <option value=""> Marca.. </option>
+                            {
+                                marcas.map((item,k)=>{
+                                    return <option key={k} value={ item }> { item } </option>
+                                })
+                            }
+                        </select>
+
+                        <select id="departamento" onChange={ filter }>
+                            <option value=""> Departamento.. </option>
+                            {
+                                departamentos.map((item,k)=>{
+                                    return <option key={k} value={ item }> { item } </option>
+                                })
+                            }
+                        </select>
+
+                        <select id="categoria" onChange={ filter }>
+                            <option value=""> Categoria.. </option>
+                            {
+                                categorias.map((item,k)=>{
+                                    return <option key={k} value={ item }> { item } </option>
+                                })
+                            }
+                        </select>
+
+                        <div className="btn-filter">
+                            <button onClick={aplicFilter} type="button" className="btn btn-primary btn-sm"> Aplicar </button>
+                            <button onClick={()=> setProductsAll(products)} type="button" className="btn btn-primary btn-sm"> Limpar </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p> Itens Selecionados: </p>
+                        <span> {list.length} </span>
+                    </div>
+
+                   
                 </div>
 
             </div>
