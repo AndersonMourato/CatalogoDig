@@ -132,7 +132,13 @@ export const products =  [
         departamento: "MEDICAMENTO",
     }
 ]
-
+export function getProducts(){
+    const array = [];
+    products.map((item, k)=>{
+        array[k] = {...item, id:k};
+    })
+    return array;
+}
 
 export function getMarcas(){
     const array = [];

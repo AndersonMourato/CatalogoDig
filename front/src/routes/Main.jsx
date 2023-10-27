@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { BiAbacus, BiCategoryAlt } from "react-icons/bi"
 import Product from "../components/Product";
-import { products, getMarcas, getDepartamentos, getCategorias } from "../components/Products";
-import { Form } from "react-router-dom";
+import { getProducts, getMarcas, getDepartamentos, getCategorias } from "../components/Products";
 
 const Main = ()=>{
 
+    const products = getProducts();
     const marcas = getMarcas();
     const departamentos = getDepartamentos();
     const categorias = getCategorias();
-
-    const [productsAll, setProductsAll] = useState(products);
+    
     const [list, setList] = useState([])
+    const [productsAll, setProductsAll] = useState(products);
     const [getFiltros, setFiltros] = useState({
         marca: "",
         departamento: "",
@@ -73,6 +74,7 @@ const Main = ()=>{
     }
 
 
+
     return(
         <>
             <h1> Lista de Produtos </h1>
@@ -114,6 +116,7 @@ const Main = ()=>{
                                                 return(
                                                     <Product 
                                                         key={ key }
+                                                        id={ itens.id }
                                                         img={ itens.img }
                                                         cod={ itens.cod}
                                                         descricao={ itens.descricao }
@@ -121,8 +124,8 @@ const Main = ()=>{
                                                         preco={ itens.preco }
                                                         promo={ itens.promo }
                                                         prFinal={ itens.prFinal }
-                                                        list = { list }
-                                                        setList = { setList }
+                                                        listItens={ list }
+                                                        setList={ setList }
                                                     />
                                                 )
                                             })
@@ -137,8 +140,8 @@ const Main = ()=>{
 
                 <div className="main-menu">
 
-                    <div className="filters">
-                        <h6> Filtros </h6>
+                    <div className="box-menu">
+                        <h6> <BiAbacus /> Filtros </h6>
 
                         <select id="marca" onChange={ filter }>
                             <option value=""> Marca.. </option>
@@ -173,12 +176,11 @@ const Main = ()=>{
                         </div>
                     </div>
 
-                    <div>
-                        <p> Itens Selecionados: </p>
-                        <span> {list.length} </span>
+                    <div className="box-menu">
+                        <h6> <BiCategoryAlt/> Itens </h6>
+                        <span> { list.length } </span>
                     </div>
 
-                   
                 </div>
 
             </div>
