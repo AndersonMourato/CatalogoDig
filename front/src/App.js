@@ -8,6 +8,8 @@ import Header from "./components/Header";
 import { useState } from "react";
 import Main from "./routes/Main";
 
+import PaginateProducs from "./components/PaginateProducs";
+
 
 
 

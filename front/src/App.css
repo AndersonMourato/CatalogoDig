@@ -28,48 +28,65 @@
 .logeed{
   color: white;
 }
-
-
 .content-login{
   width: 50%;
   margin: 3% auto;
 }
-
-
 .content-login .header{
   text-align: center;
   margin: 3% auto;
 }
 
+/*---------------------------- BODY CONTENT | MAIN FILTERS ------------------------------------------*/
 
-.main-container{
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
+.body-content{
+  display: block;
+  text-align: center;
 }
 
-
-.main-menu{
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(37, 37, 37);
+#menu-filter{
+  position: absolute;
+  top: 10%;
+  right: 0%;
+  text-align: center;
+  background-color: #2a2a2a;
   padding: 10px;
   color: white;
+  max-width: 200px;
 }
-.main-menu select{
+#menu-filter select{
   display: flex;
   border-radius: 5px;
   margin-bottom: 5px;
   border: none;
   width: 100%;
 }
-.main-menu .btn-filter{
+#menu-filter .btn-filter{
   display: flex;
 }
-.main-menu .box-menu{
+#menu-filter .box-menu{
   border-top: solid 1px white;
   margin-top: 10px;
   padding: 10px 0;
+}
+
+@media (min-width: 992px) {
+  .body-content{
+    display: grid;
+    grid-template-areas: "content menu";
+    grid-template-columns: 6fr 1fr;
+    gap: 1rem;
+  }
+  .content{
+    grid-area: content;
+    text-align: center;
+  }
+
+  #menu-filter{
+    display: block;
+    grid-area: menu;
+    position: sticky;
+  }
 }
 
 
@@ -109,7 +126,6 @@
 }
 
 
-
 .footer{
   display: flex;
   color: white;
@@ -117,3 +133,4 @@
   align-items: center;
   text-align: center;
 }
+

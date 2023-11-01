@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { BiAbacus, BiCategoryAlt } from "react-icons/bi"
-import Product from "../components/Product";
+import { BiAbacus, BiCategoryAlt, BiLayout } from "react-icons/bi"
 import { getProducts, getMarcas, getDepartamentos, getCategorias } from "../components/Products";
+import PaginateProducs from "../components/PaginateProducs";
+import { Link } from "react-router-dom";
 
 const Main = ()=>{
-
     const products = getProducts();
     const marcas = getMarcas();
     const departamentos = getDepartamentos();
@@ -72,76 +72,25 @@ const Main = ()=>{
             setProductsAll(newArray)
         }
     }
-
-
-
+        /*
+            
+            
+        
+        */
     return(
         <>
-            <h1> Lista de Produtos </h1>
-            <div className="main-container">
 
-                <div className="main-content">
+            <div className="body-content">
 
-                    <div className="search-prod">
-                        <div className="row">
-                            <form method="get">
-                                    <div className="input-group">
-                                        <span className="input-group-text" id="addon-wrapping"><i className="bi bi-search"></i></span>
-                                        <input type="text" className="form-control" placeholder="buscar produto" />
-                                    </div>
-                            </form>
-                        </div>
-                    </div>
-
-                                        
-                    <div className="product-row">
-                        <div className="row">
-                            <div className="table-responsive-sm">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th className="col"> ADD </th>
-                                            <th className="col"> IMAGEM </th>
-                                            <th className="col"> CÓDIGO </th>
-                                            <th className="col"> DESCRICÃO </th>
-                                            <th className="col"> MARCA </th>
-                                            <th className="col"> PREÇO </th>
-                                            <th className="col"> PROMOÇÃO </th>
-                                            <th className="col"> PRE. FINAL </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            productsAll.map((itens, key)=>{
-                                                return(
-                                                    <Product 
-                                                        key={ key }
-                                                        id={ itens.id }
-                                                        img={ itens.img }
-                                                        cod={ itens.cod}
-                                                        descricao={ itens.descricao }
-                                                        marca={ itens.marca }
-                                                        preco={ itens.preco }
-                                                        promo={ itens.promo }
-                                                        prFinal={ itens.prFinal }
-                                                        listItens={ list }
-                                                        setList={ setList }
-                                                    />
-                                                )
-                                            })
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
+                <div className="content">
+                    <h1> Lista de Produtos </h1>
+                    <PaginateProducs productsAll={ productsAll } list={ list } setList={ setList } itemsShow={ 5 } />
                 </div>
 
-                <div className="main-menu">
+                <div id="menu-filter" className="collapse">
 
                     <div className="box-menu">
-                        <h6> <BiAbacus /> Filtros </h6>
+                        <h6> <BiAbacus /> Filtrar por </h6>
 
                         <select id="marca" onChange={ filter }>
                             <option value=""> Marca.. </option>
@@ -177,10 +126,18 @@ const Main = ()=>{
                     </div>
 
                     <div className="box-menu">
-                        <h6> <BiCategoryAlt/> Itens </h6>
+                        <h6> <BiCategoryAlt/> Total de itens </h6>
                         <span> { list.length } </span>
                     </div>
 
+                    <div className="box-menu">
+                        <h6> <BiLayout/> Ir para layout </h6>
+                        {
+                            list.length > 0 ?
+                            <Link to="/" className="btn btn-primary btn-sm"> Avançar </Link> :
+                            <p style={{fontSize:"0.7rem"}}>adicione ao menos um produto para proseguir com o layout.</p>
+                        }
+                    </div>
                 </div>
 
             </div>

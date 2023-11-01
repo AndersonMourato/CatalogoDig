@@ -1,4 +1,6 @@
-export const products =  [
+//http://app.absfarma.com.br:3031/png/1016.png
+
+const products =  [
     {
         img: "https://images.nexfar.com.br/unsafe/0x1024/https://s3-sa-east-1.amazonaws.com/nexfar-documents-private/2021/3/17/605259c72fdfe9294266d109.png",
         cod: "8750",
