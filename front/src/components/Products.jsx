@@ -137,7 +137,7 @@ const products =  [
 export function getProducts(){
     const array = [];
     products.map((item, k)=>{
-        array[k] = {...item, id:k};
+        array[k] = {...item, idKey: item.cod+k};
     })
     return array;
 }

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Product from "../components/Product";
 
 
-function PaginateProducs({ productsAll, itemsShow, list, setList }){
+function PaginateProducs({ productsAll, itemsShow, listItens }){
 
     const items = productsAll;
   
@@ -45,7 +45,7 @@ function PaginateProducs({ productsAll, itemsShow, list, setList }){
                                         return(
                                             <Product 
                                                 key={ key }
-                                                id={ itens.id }
+                                                idKey={ itens.idKey }
                                                 img={ itens.img }
                                                 cod={ itens.cod}
                                                 descricao={ itens.descricao }
@@ -53,8 +53,7 @@ function PaginateProducs({ productsAll, itemsShow, list, setList }){
                                                 preco={ itens.preco }
                                                 promo={ itens.promo }
                                                 prFinal={ itens.prFinal }
-                                                listItens={ list }
-                                                setList={ setList }
+                                                listItens={ listItens }
                                             />
                                         )
                                     })

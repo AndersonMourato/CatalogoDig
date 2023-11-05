@@ -10,7 +10,7 @@ const Main = ()=>{
     const departamentos = getDepartamentos();
     const categorias = getCategorias();
     
-    const [list, setList] = useState([])
+    let listItens = []
     const [productsAll, setProductsAll] = useState(products);
     const [getFiltros, setFiltros] = useState({
         marca: "",
@@ -72,11 +72,7 @@ const Main = ()=>{
             setProductsAll(newArray)
         }
     }
-        /*
-            
-            
-        
-        */
+
     return(
         <>
 
@@ -84,7 +80,7 @@ const Main = ()=>{
 
                 <div className="content">
                     <h1> Lista de Produtos </h1>
-                    <PaginateProducs productsAll={ productsAll } list={ list } setList={ setList } itemsShow={ 5 } />
+                    <PaginateProducs productsAll={ productsAll } listItens={ listItens } itemsShow={ 5 } />
                 </div>
 
                 <div id="menu-filter" className="collapse">
@@ -127,13 +123,13 @@ const Main = ()=>{
 
                     <div className="box-menu">
                         <h6> <BiCategoryAlt/> Total de itens </h6>
-                        <span> { list.length } </span>
+                        <span> 0 </span>
                     </div>
 
                     <div className="box-menu">
                         <h6> <BiLayout/> Ir para layout </h6>
                         {
-                            list.length > 0 ?
+                            listItens.length > 0 ?
                             <Link to="/" className="btn btn-primary btn-sm"> Avançar </Link> :
                             <p style={{fontSize:"0.7rem"}}>adicione ao menos um produto para proseguir com o layout.</p>
                         }

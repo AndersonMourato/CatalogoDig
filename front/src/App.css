@@ -5,8 +5,12 @@
   margin: 5px;
 }
 .btnAction{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   color: rgb(10, 59, 255);
+  padding: 5px;
 }
 
 
