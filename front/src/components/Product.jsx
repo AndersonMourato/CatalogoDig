@@ -35,8 +35,6 @@ const Product = ({ idKey, img, cod, descricao, marca, preco, promo, prFinal, lis
             } 
             
         }
-        
-        console.log(listItens)
     }
    
     return(

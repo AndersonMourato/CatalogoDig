@@ -168,4 +168,34 @@ export function getCategorias(){
     const newArray = [...new Set(array)];
     return newArray;
 }
+/*
+produto = {
+    img: "",
+    cod: "",
+    descricao: "",
+    descricao2: "",
+    descricao3: "",
+    descricao4: "",
+    marca: "",
+    categoria: "",
+    departamento: "",
+    estoque:"",
+    validade:"",
+    psicotropico: "",
+    precoTabela:"",
+}
 
+promocao = {
+    id: "",
+    descricao: "",
+    preco: "",
+    inicioPromo: "",
+    fimPromo: "",
+    precoFinal: "",
+}
+
+usuarios = {
+    login: "",
+    senha: "",
+}
+*/

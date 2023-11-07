@@ -4,72 +4,67 @@ import { getProducts, getMarcas, getDepartamentos, getCategorias } from "../comp
 import PaginateProducs from "../components/PaginateProducs";
 import { Link } from "react-router-dom";
 
-const Main = ()=>{
+
+const Main = ()=>{                                  console.log("BRANCH TESTE")
     const products = getProducts();
     const marcas = getMarcas();
     const departamentos = getDepartamentos();
     const categorias = getCategorias();
+    const [productsAll, setProductsAll] = useState(products);
+    const [getListItens, setListItens] = useState(0);
     
     let listItens = []
-    const [productsAll, setProductsAll] = useState(products);
-    const [getFiltros, setFiltros] = useState({
+    let filters = {
         marca: "",
-        departamento: "",
+        departamento:"",
         categoria: ""
-    });
+    }
 
-    function filter(ev){
+   /* if(getListItens != "" && listItens == ""){
+        listItens = getListItens 
+     }
+*/
+
+    function updateFilter(ev){
         const id = ev.target.id;
         const value = ev.target.value;
 
         if(id === "marca"){
-            setFiltros({
-                marca: value,
-                departamento: getFiltros.departamento,
-                categoria: getFiltros.categoria
-            })
+            filters.marca = value
         }else if(id === "departamento"){
-            setFiltros({
-                marca: getFiltros.marca,
-                departamento: value,
-                categoria: getFiltros.categoria
-            })
+            filters.departamento = value
         }else if(id === "categoria"){
-            setFiltros({
-                marca: getFiltros.marca,
-                departamento: getFiltros.departamento,
-                categoria: value
-            })
+            filters.categoria = value
         }
-
     }
 
-    function aplicFilter(){
-        const marca = (item)=>{
-            if(getFiltros.marca != ""){
-                return item.marca === getFiltros.marca
+    function submitFilter(){
+        const marca = (item)=>{ 
+            if(filters.marca != ""){
+                return item.marca === filters.marca
             }else{
                 return true
             }   
         }
         const categoria = (item)=>{
-            if(getFiltros.categoria != ""){
-                return item.categoria === getFiltros.categoria
+            if(filters.categoria != ""){
+                return item.categoria === filters.categoria
             }else{
                 return true
             }   
         }
         const departamento = (item)=>{
-            if(getFiltros.departamento != ""){
-                return item.departamento === getFiltros.departamento
+            if(filters.departamento != ""){
+                return item.departamento === filters.departamento
             }else{
                 return true
             }   
         }
         
-        if(getFiltros.marca != "" || getFiltros.categoria != "" || getFiltros.departamento != ""){
+        if(filters.marca != "" || filters.categoria != "" || filters.departamento != ""){ 
             const newArray = products.filter((item)=> marca(item)).filter((item)=> departamento(item)).filter((item)=> categoria(item))
             setProductsAll(newArray)
+            setListItens(listItens)
         }
     }
 
@@ -88,7 +83,7 @@ const Main = ()=>{
                     <div className="box-menu">
                         <h6> <BiAbacus /> Filtrar por </h6>
 
-                        <select id="marca" onChange={ filter }>
+                        <select id="marca" onChange={ updateFilter }>
                             <option value=""> Marca.. </option>
                             {
                                 marcas.map((item,k)=>{
@@ -97,7 +92,7 @@ const Main = ()=>{
                             }
                         </select>
 
-                        <select id="departamento" onChange={ filter }>
+                        <select id="departamento" onChange={ updateFilter }>
                             <option value=""> Departamento.. </option>
                             {
                                 departamentos.map((item,k)=>{
@@ -106,7 +101,7 @@ const Main = ()=>{
                             }
                         </select>
 
-                        <select id="categoria" onChange={ filter }>
+                        <select id="categoria" onChange={ updateFilter }>
                             <option value=""> Categoria.. </option>
                             {
                                 categorias.map((item,k)=>{
@@ -116,7 +111,7 @@ const Main = ()=>{
                         </select>
 
                         <div className="btn-filter">
-                            <button onClick={aplicFilter} type="button" className="btn btn-primary btn-sm"> Aplicar </button>
+                            <button onClick={submitFilter} type="button" className="btn btn-primary btn-sm"> Aplicar </button>
                             <button onClick={()=> setProductsAll(products)} type="button" className="btn btn-primary btn-sm"> Limpar </button>
                         </div>
                     </div>
