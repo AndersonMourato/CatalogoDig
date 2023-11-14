@@ -168,6 +168,8 @@ export function getCategorias(){
     const newArray = [...new Set(array)];
     return newArray;
 }
+
+
 /*
 produto = {
     img: "",
