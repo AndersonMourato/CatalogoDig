@@ -13,12 +13,6 @@ import PaginateProducs from "../components/PaginateProducs";
 
 export default function Main(){
     
-    const Lista = ()=>{
-        const [listItens, setListItens] = useState(0)
-        return (listItens, setListItens)
-    }
-    
-
     return(
         <>
             <div className="body-content">
