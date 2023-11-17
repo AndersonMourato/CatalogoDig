@@ -6,9 +6,8 @@ import Home from "./routes/Home";
 import Login, { action as actionLogin} from "./routes/Login";
 import Header from "./components/Header";
 import { useState } from "react";
-import Main from "./routes/Main";
 
-import PaginateProducs from "./components/PaginateProducs";
+import PaginateProducs from "./routes/PaginateProducs";
 
 
 
@@ -31,8 +30,8 @@ function App() {
           action: actionLogin,
         },
         {
-          path: "/main",
-          element: <Main login={stateLogin}/>,
+          path: "/produtos",
+          element: <PaginateProducs />,
           errorElement: <PageErro />,
         },
       ],
