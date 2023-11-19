@@ -6,7 +6,7 @@ import { BiAbacus, BiCategoryAlt, BiLayout } from "react-icons/bi"
 import { getProducts, getMarcas, getDepartamentos, getCategorias, getFilial } from "../components/Products";
 
 
-function MenuContent({ listItens, setItems, items }){
+function MenuContent({ listItens, setItems, items, sttFl, setSttFl}){
     const marcas = getMarcas();
     const departamentos = getDepartamentos();
     const categorias = getCategorias();
@@ -77,18 +77,10 @@ function MenuContent({ listItens, setItems, items }){
 
     function filterFilial(ev){
         let fl = parseInt(ev.target.value)
-        let newArray = []
-
         if(fl){
-            items.forEach((row)=>{
-                if( fl === row.filial ){
-                    newArray.push(row)
-                }
-            })
+            setSttFl(fl)
         }
-        (newArray !== "") && setItems(newArray)
     }
-
 
     return(
         <div id="menu-filter" className="collapse">
@@ -97,12 +89,21 @@ function MenuContent({ listItens, setItems, items }){
                 
                 {
                     filiais.map((item,k)=>{
-                        return (
-                            <div id="filiais" key={k} onChange={(ev)=> filterFilial(ev)}>
-                                <input type="radio" id={ 10 + k} name="filial" value={ item } />
-                                <label htmlFor={ 10 + k }> { "Filial "+ item } </label>
-                            </div>
-                        )
+                        if(item == sttFl){
+                            return (
+                                <div id="filiais" key={k} onChange={(ev)=> filterFilial(ev)}>
+                                    <input type="radio" id={ 10 + k} name="filial" value={ item } checked/>
+                                    <label htmlFor={ 10 + k }> { "Filial "+ item } </label>
+                                </div>
+                            )
+                        }else{
+                            return (
+                                <div id="filiais" key={k} onChange={(ev)=> filterFilial(ev)}>
+                                    <input type="radio" id={ 10 + k} name="filial" value={ item }/>
+                                    <label htmlFor={ 10 + k }> { "Filial "+ item } </label>
+                                </div>
+                            ) 
+                        }
                     })
                 }
               
@@ -286,16 +287,29 @@ function PaginateProducs(){
     }
     
     function PaginatedItems({ itemsPerPage }) {
-        const [items, setItems] = useState(getProducts())
         const [listItens, setListItens] = useState([]);
+        const [sttFl, setSttFl] = useState(1)
+        const [items, setItems] = useState(getProducts())
+
+        let products = items;
+        if(sttFl != 1){
+            let newArray = []
+            products.forEach((row)=>{
+                if( sttFl === row.filial ){
+                    newArray.push(row)
+                }
+            })
+            products = newArray
+        }
+
 
         const [itemOffset, setItemOffset] = useState(0);
         const endOffset = itemOffset + itemsPerPage;
-        const currentItems = items.slice(itemOffset, endOffset);
-        const pageCount = Math.ceil(items.length / itemsPerPage);
+        const currentItems = products.slice(itemOffset, endOffset);
+        const pageCount = Math.ceil(products.length / itemsPerPage);
         
         const handlePageClick = (event) => {
-            const newOffset = (event.selected * itemsPerPage) % items.length;
+            const newOffset = (event.selected * itemsPerPage) % products.length;
             setItemOffset(newOffset);
         };
 
@@ -322,7 +336,7 @@ function PaginateProducs(){
                     nextLinkClassName="page-link"
                     activeClassName="active"
                 />
-                <MenuContent listItens={ listItens } items={ items } setItems={ setItems } />
+                <MenuContent listItens={ listItens } items={ products } setItems={ setItems } sttFl={ sttFl } setSttFl={ setSttFl }  />
             </>
         );
     }

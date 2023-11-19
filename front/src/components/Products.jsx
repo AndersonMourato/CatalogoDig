@@ -149,7 +149,7 @@ const products =  [
 export function getProducts(){
     const array = [];
     products.map((item, k)=>{
-        array[k] = {...item, idKey: item.cod+k};
+        array[k] = {...item, idKey: item.cod+k+item.filial};
     })
     return array;
 }
