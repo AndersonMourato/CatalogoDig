@@ -1,10 +1,10 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider, HashRouter } from "react-router-dom";
+import { useState } from "react";
 import PageErro from "./routes/Erro";
 import Home from "./routes/Home";
 import Login, { action as actionLogin} from "./routes/Login";
 import Header from "./components/Header";
-import { useState } from "react";
 
 import PaginateProducs, { action as actionPaginate } from "./routes/PaginateProducs";
 import CreateLamina from "./routes/CreateLamina";
@@ -48,7 +48,7 @@ function App() {
 
 
   return (
-      <RouterProvider router={router}/>
+      <HashRouter router={router}/>
   );
 }
 
