@@ -1,6 +1,5 @@
-import bootstrap from "bootstrap";
 import './App.css';
-import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, HashRouter } from "react-router-dom";
 import PageErro from "./routes/Erro";
 import Home from "./routes/Home";
 import Login, { action as actionLogin} from "./routes/Login";
@@ -49,7 +48,7 @@ function App() {
 
 
   return (
-      <RouterProvider router={router}/>
+      <HashRouter router={router}/>
   );
 }
 
