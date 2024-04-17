@@ -48,7 +48,7 @@ function App() {
 
 
   return (
-      <HashRouter router={router}/>
+      <RouterProvider router={router}/>
   );
 }
 
