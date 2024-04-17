@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/CatalogoDig/static/css/main.036111b5.css",
-    "main.js": "/CatalogoDig/static/js/main.b3d046f9.js",
+    "main.js": "/CatalogoDig/static/js/main.c73952f2.js",
     "static/media/bootstrap-icons.woff?": "/CatalogoDig/static/media/bootstrap-icons.449ad8adf6ae0424b7ed.woff",
     "static/media/bootstrap-icons.woff2?": "/CatalogoDig/static/media/bootstrap-icons.dea24bf5a7646d8b84e7.woff2",
     "index.html": "/CatalogoDig/index.html",
     "main.036111b5.css.map": "/CatalogoDig/static/css/main.036111b5.css.map",
-    "main.b3d046f9.js.map": "/CatalogoDig/static/js/main.b3d046f9.js.map"
+    "main.c73952f2.js.map": "/CatalogoDig/static/js/main.c73952f2.js.map"
   },
   "entrypoints": [
     "static/css/main.036111b5.css",
-    "static/js/main.b3d046f9.js"
+    "static/js/main.c73952f2.js"
   ]
 }

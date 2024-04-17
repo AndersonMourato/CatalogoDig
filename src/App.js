@@ -23,6 +23,11 @@ function App() {
       children: [
         {index:true, element: <Home />},
         {
+          path: "/CatalogoDig",
+          element: <Home />,
+          errorElement: <PageErro />,
+        },
+        {
           path: "/login",
           element: <Login setLogin={setStateLogin}/>,
           errorElement: <PageErro />,
@@ -48,7 +53,7 @@ function App() {
 
 
   return (
-      <HashRouter router={router}/>
+      <RouterProvider router={router}/>
   );
 }
 
